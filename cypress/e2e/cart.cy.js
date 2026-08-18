@@ -76,6 +76,8 @@ describe('add to cart', () => {
 
         // Add to cart
         cy.xpath(cartSelector.addToCart_button).first().click();
+
+        //kapish
     });
 
 });
