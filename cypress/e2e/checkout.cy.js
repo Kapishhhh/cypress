@@ -1,3 +1,5 @@
+import { checkoutSelector } from "../support/selector";
+
 describe('Checkout functionality', () => {
 
     beforeEach(() => {
@@ -9,21 +11,21 @@ describe('Checkout functionality', () => {
         cy.login('okk', '123');
 
         // Fish
-        cy.xpath("//img[contains(@src,'sm_fish.gif')]").click();
+        cy.xpath(checkoutSelector.fish_category).click();
 
         // Fish product
-        cy.xpath("//a[normalize-space()='FI-SW-01']").click();
+        cy.xpath(checkoutSelector.angelfish_product).click();
 
         // Fish item
-        cy.xpath("//a[normalize-space()='EST-1']").click();
+        cy.xpath(checkoutSelector.angelfish_item).click();
 
         // Add to cart
-        cy.xpath("//a[normalize-space()='Add to Cart']")
+        cy.xpath(checkoutSelector.addToCart_button)
             .first()
             .click();
 
         // Proceed to checkout
-        cy.xpath("//a[normalize-space()='Proceed to Checkout']")
+        cy.xpath(checkoutSelector.proceedToCheckout_button)
             .first()
             .click();
     });

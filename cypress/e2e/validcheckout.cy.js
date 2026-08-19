@@ -1,3 +1,5 @@
+import { validCheckoutSelector } from "../support/selector";
+
 describe('Checkout functionality', () => {
 
     beforeEach(() => {
@@ -5,25 +7,25 @@ describe('Checkout functionality', () => {
         // Open website
         cy.visit('https://petstore.octoperf.com/actions/Catalog.action');
 
-        // Login using USERNAME and PASSWORD from Cypress environment
+        // Login
         cy.login();
 
         // Select Fish
-        cy.xpath("//img[contains(@src,'sm_fish.gif')]").click();
+        cy.xpath(validCheckoutSelector.fish_category).click();
 
         // Select Fish product
-        cy.xpath("//a[normalize-space()='FI-SW-01']").click();
+        cy.xpath(validCheckoutSelector.angelfish_product).click();
 
         // Select Fish item
-        cy.xpath("//a[normalize-space()='EST-1']").click();
+        cy.xpath(validCheckoutSelector.angelfish_item).click();
 
         // Add to cart
-        cy.xpath("//a[normalize-space()='Add to Cart']")
+        cy.xpath(validCheckoutSelector.addToCart_button)
             .first()
             .click();
 
         // Proceed to checkout
-        cy.xpath("//a[normalize-space()='Proceed to Checkout']")
+        cy.xpath(validCheckoutSelector.proceedToCheckout_button)
             .first()
             .click();
 
@@ -32,42 +34,15 @@ describe('Checkout functionality', () => {
 
     it('Verify users can checkout successfully', () => {
 
-        // We will add checkout details here
+        // Continue order
+        cy.xpath(validCheckoutSelector.continue_button).click();
 
-    });
+        // Confirm order
+        cy.xpath(validCheckoutSelector.confirm_button).click();
 
-
-    it('Verify checkout should not proceed with empty first name', () => {
-
-        // Empty first name test
-
-    });
-
-
-    it('Verify checkout should not proceed with empty card number', () => {
-
-        // Empty card number test
-
-    });
-
-
-    it('Verify checkout should not proceed with empty last name', () => {
-
-        // Empty last name test
-
-    });
-
-
-    it('Verify checkout should not proceed with alphabetic zip code', () => {
-
-        // Alphabetic zip code test
-
-    });
-
-
-    it('Verify checkout accepts alphabetic zip code', () => {
-
-        // Zip code test
+        // Verify successful order
+        cy.xpath(validCheckoutSelector.order_success_message)
+            .should('be.visible');
 
     });
 
