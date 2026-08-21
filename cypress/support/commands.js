@@ -13,20 +13,23 @@
 
 import { loginSelector } from "./selector";
 
-Cypress.Commands.add('login', () => {
+Cypress.Commands.add('login', (username = Cypress.env("USERNAME"), password = Cypress.env("PASSWORD")) => {
+
+    // Click Enter the Store
+    cy.xpath(loginSelector.enter_store).click();
 
     // Click Sign In
-    cy.xpath("//a[normalize-space()='Sign In']").click();
+    cy.xpath(loginSelector.sign_in).click();
 
     // Enter username
     cy.get(loginSelector.username_field)
         .clear()
-        .type(Cypress.env("USERNAME"));
+        .type(username);
 
     // Enter password
     cy.get(loginSelector.password_field)
         .clear()
-        .type(Cypress.env("PASSWORD"));
+        .type(password);
 
     // Click Login
     cy.get(loginSelector.signon_button).click();

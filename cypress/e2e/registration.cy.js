@@ -1,4 +1,4 @@
-import {selector} from "../support/selector";
+import { selector } from "../support/selector";
 
 describe('registration page', () => {
 
@@ -7,11 +7,11 @@ describe('registration page', () => {
 
   beforeEach(() => {
 
-    cy.visit('https://petstore.octoperf.com/actions/Catalog.action');
+    cy.visit('/');
 
-    
-    cy.get('#MenuContent a[href*="Account.action"]').click();
 
+    cy.xpath(selector.enter_store).click();
+    cy.get(selector.account).click();
   });
 
   it('verify registration page', () => {

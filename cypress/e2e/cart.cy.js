@@ -88,19 +88,16 @@ describe('add to cart', () => {
 
     it('Continue shopping after adding item', () => {
 
-        cy.visit('https://petstore.octoperf.com/actions/Catalog.action');
+        cy.visit('/');
+        cy.xpath(cartSelector.enter_store).click();
 
-        // Fish
         cy.xpath(cartSelector.fish_category).click();
         cy.xpath(cartSelector.angelfish_product).click();
         cy.xpath(cartSelector.angelfish_item).click();
-
         cy.xpath(cartSelector.addToCart_button).first().click();
 
-        // Go back to Catalog
-        cy.visit('https://petstore.octoperf.com/actions/Catalog.action');
-
-        // Dog
+        cy.visit('/');
+        cy.xpath(cartSelector.enter_store).click();
         cy.xpath(cartSelector.dog_category).click();
         cy.xpath(cartSelector.bulldog_product).click();
         cy.xpath(cartSelector.bulldog_item).click();
@@ -112,16 +109,14 @@ describe('add to cart', () => {
 
     it('Remove product from cart', () => {
 
-        cy.visit('https://petstore.octoperf.com/actions/Catalog.action');
+        cy.visit('/');
+        cy.xpath(cartSelector.enter_store).click();
 
-        // Fish
         cy.xpath(cartSelector.fish_category).click();
         cy.xpath(cartSelector.angelfish_product).click();
         cy.xpath(cartSelector.angelfish_item).click();
 
         cy.xpath(cartSelector.addToCart_button).first().click();
-
-        // Remove product
         cy.xpath(cartSelector.remove_button).first().click();
 
     });
@@ -129,22 +124,18 @@ describe('add to cart', () => {
 
     it('Update quantity of product in cart', () => {
 
-        cy.visit('https://petstore.octoperf.com/actions/Catalog.action');
+        cy.visit('/');
+        cy.xpath(cartSelector.enter_store).click();
 
-        // Fish
         cy.xpath(cartSelector.fish_category).click();
         cy.xpath(cartSelector.angelfish_product).click();
         cy.xpath(cartSelector.angelfish_item).click();
-
-        // Add product to cart
         cy.xpath(cartSelector.addToCart_button).first().click();
 
         // Change quantity from 1 to 2
         cy.get(cartSelector.angelfish_quantity)
             .clear()
             .type('2');
-
-        // Click Update Cart
         cy.xpath(cartSelector.updateCart_button)
             .first()
             .click();
@@ -154,14 +145,12 @@ describe('add to cart', () => {
 
     it('Add available product to cart', () => {
 
-        cy.visit('https://petstore.octoperf.com/actions/Catalog.action');
+        cy.visit('/');
+        cy.xpath(cartSelector.enter_store).click();
 
-        // Fish
         cy.xpath(cartSelector.fish_category).click();
         cy.xpath(cartSelector.angelfish_product).click();
         cy.xpath(cartSelector.angelfish_item).click();
-
-        // Add to cart
         cy.xpath(cartSelector.addToCart_button).first().click();
 
     });
