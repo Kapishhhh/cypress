@@ -33,3 +33,7 @@ jobs:
 
       - name: Run Cypress Tests
         run: npx cypress run
+        env:
+            CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+            CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
+            CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
